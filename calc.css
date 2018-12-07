@@ -1,5 +1,5 @@
 *{
-    font-family: Georgia;
+    font-family: Garamond;
     font-size: 24px;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@
 
 #row-1, #row-2, #row-3, #row-4{
     display: flex;
-    padding: 4px;
+    padding: 2px 2px;
 }
 
 ul{
@@ -29,17 +29,43 @@ ul{
 li {
     width: 50px;
     height: 50px;
-    line-height: 48px;
-    border: 1px solid #FDD023;
+    line-height: 50px;
+    border: 1px solid #7D60A3;
     margin: 2px;
     
 }
 
-#all-displays{
-    text-align: right;
-    padding: ;
-    width: 210px;
-    height: 50px;
+li:hover{
+    font-weight: 600;
+    background: #7D60A3;
 }
 
 
+#all-displays{
+    font-weight: 600;
+    margin: 0 auto;
+    text-align: right;
+    padding: 10px;
+    max-width: 190px;
+    height: 50px;
+    border: 1px solid #7D60A3;
+
+}
+
+/* FIX THIS! */
+#all-displays:after{ 
+  content: "";
+  background: url(/img/lsu.jpg);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+
+.pressed {
+    background: #7D60A3;
+}
