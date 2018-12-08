@@ -12,46 +12,48 @@
     <body>
         
         <div id="calculator">
-        <div id="all-displays">
-        <div id="active-display"></div>
-        <div id="expression-display"></div>
-        <div id="answer-display"></div>
-        </div>
+            <div id="all-displays">
+                <div id="active-display"></div>
+                <div id="expression-display"></div>
+                <div id="answer-display"></div>
+            </div>
         
-        
-        <ul id="row-1">
-            <li id="square">SQ</li>
-            <li id="square-root">SR</li>
-            <li id="multiplication">*</li>
-            <li id="division">/</li>
-        </ul> 
-        
-        
-        <ul id="row-2">
-            <li onclick="digitPressed(7)">7</li>
-            <li onclick="digitPressed(8)">8</li>
-            <li onclick="digitPressed(9)">9</li>
-            <li id="subtraction">-</li>
-        </ul>
-    
-        <ul id="row-3">
-            <li onclick="digitPressed(4)">4</li>
-            <li onclick="digitPressed(5)">5</li>
-            <li onclick="digitPressed(6)">6</li>
-            <li id="addition">+</li>
-        </ul> 
-    
-       <ul id="row-4">
-            <li onclick="digitPressed(1)">1</li>
-            <li onclick="digitPressed(2)">2</li>
-            <li onclick="digitPressed(3)">3</li>
-            <li id="equals">=</li>
-        </ul> 
-       <ul id="row-5">
-            <li onclick="digitPressed(0)">0</li>
-            <li onclick="digitPressed(00)">00</li>
-            <li id="decimal">.</li>
-            <li id="test-button">T</li> <!--- Placeholder: doesn't work --->
+            <div class="keys">
+                <ul id="row-1">
+                    <li id="square">SQ</li>
+                    <li id="square-root">SR</li>
+                    <li id="multiplication" type="operator">*</li>
+                    <li id="division" type="operator">/</li>
+                </ul> 
+
+
+                <ul id="row-2">
+                    <li type="numeral">7</li>
+                    <li type="numeral">8</li>
+                    <li type="numeral">9</li>
+                    <li id="subtraction" type="negative">-</li>
+                </ul>
+
+                <ul id="row-3">
+                    <li type="numeral">4</li>
+                    <li type="numeral">5</li>
+                    <li type="numeral">6</li>
+                    <li id="addition" type="operator">+</li>
+                </ul> 
+
+               <ul id="row-4">
+                    <li type="numeral">1</li>
+                    <li type="numeral">2</li>
+                    <li type="numeral">3</li>
+                    <li id="equals" type="express">=</li>
+                </ul> 
+               <ul id="row-5">
+                    <li type="numeral">0</li>
+                    <li type="numeral">00</li>
+                    <li id="decimal" type="point">.</li>
+                    <li id="test-button">T</li><!--- Placeholder: doesn't work --->
+                </ul>
+            </div>
         </div>
     
     </body>

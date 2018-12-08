@@ -1,17 +1,36 @@
 window.onload = function(){
+    
+    var calculator = document.getElementById("calculator");
+    var keys = calculator.querySelector(".keys");
+    keys.addEventListener('click', function(e){
+        if(e.target.attributes.type.value === "numeral"){
+            digitPressed(e.target.innerHTML);              //this needs conditions for nought and point //
+            
+        }else if(e.target.attributes.type.value === "operator"){
+            operatorPressed(e.target.innerHTML);
+            e.target.classList.add ("pressed");
+            
+        }else if(e.target.attributes.type.value === "negative"){
+            negativePressed(e.target.innerHTML);
+            
+    }else if(e.target.attributes.type.value === "reset"){
+            clear();
+        
+    }});
+ 
+    
             ///// Display Variables /////
     
     var displayActive = document.getElementById("active-display");
     var displayExpression = document.getElementById("expression-display");
     var displayAnswer = document.getElementById("answer-display");
     
-           /////Number Variables/////
+
     
-    var decimal = document.getElementById("decimal");
-    var calcDigit = document.getElementsByClassName("digit");
     
             /////Operator Variables/////
-    
+        
+    var decimal = document.getElementById("decimal");
     var division = document.getElementById("division");
     var multiplication = document.getElementById("multiplication");
     var subtraction = document.getElementById("subtraction");
@@ -30,262 +49,37 @@ window.onload = function(){
             /////Number functions/////
     
     
+    function digitPressedAttributeResetAfterEquals(){
+            equals.classList.remove("pressed");
+            displayExpression.innerHTML = "";
+            displayActive.innerHTML = "";
+            displayActive.style.display = "block";
+    }
+    
+    function digitPressedAttributeReset(){
+        addition.classList.remove("pressed");
+        subtraction.classList.remove("pressed");
+        multiplication.classList.remove("pressed");
+        division.classList.remove("pressed");
+        multiplication.setAttribute("state","");
+        division.setAttribute("state","");
+        equals.setAttribute("state","");
+        displayActive.style.display = "block"; 
+    }
+    
     function digitPressed(number){
         
         if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + number ;
+            digitPressedAttributeResetAfterEquals();
+            displayActive.innerHTML = displayActive.innerHTML + number;
             
         }else{
-            
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + number ;
+            digitPressedAttributeReset();
+            displayActive.innerHTML = displayActive.innerHTML + number;
             }  
     }
 
-    
-    /*
-    two.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "2" ;
-            
-        }else{
-            
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "2" ;
-            }
-    } 
-    
-    three.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "3" ;
-            
-        }else{
-            
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "3" ;
-            }
-    } 
-    
-    four.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "4" ;
-            
-        }else{
-            
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "4" ;
-            }
-    }    
-    
-    five.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "5" ;
-            
-        }else{
 
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "5" ;
-            }
-    }   
-    
-    six.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "6" ;
-            
-        }else{
-
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "6" ;
-            }
-    }   
-    
-    seven.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "7" ;
-            
-        }else{
-
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "7" ;
-            }
-    }   
-    
-    eight.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "8" ;
-            
-        }else{
-        
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "8" ;
-            }
-    }   
-    
-    nine.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "9" ;
-            
-        }else{
-        
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "9" ;
-            }
-    }   
-    
-    zero.onclick = function(){
-        
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "0" ;
-            
-        }else{
-        
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "0" ;
-            }
-    }   
-    
-    doubleZero.onclick = function(){
-
-        if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "00" ;
-
-        }else{
-
-        addition.classList.remove("pressed");
-        subtraction.classList.remove("pressed");
-        multiplication.classList.remove("pressed");
-        division.classList.remove("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        equals.setAttribute("state","");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "00" ;
-            }
-    }  
-    
-    */
     
     decimal.onclick = function(){
         
@@ -307,116 +101,86 @@ window.onload = function(){
             }
     }
     
+
+    
+    
     
             /////Operator Functions/////
     
     
-    addition.onclick = function(){
+    function operatorPressed(operator){
         
-        if(addition.classList == "pressed"){
+        if(multiplication.getAttribute("state","initial") || division.getAttribute("state","initial")){
+            //do nothing//            
+        
+        }else if(addition.classList == "pressed" || subtraction.classList == "pressed" || multiplication.classList == "pressed" || division.classList == "pressed"){
             // do nothing //
+            
+        }else if(equals.className == "pressed" && displayAnswer.innerHTML == "Error: Divided by 0"){
+            equals.classList.remove("pressed");
+            equals.setAttribute("state","initial");
+            displayExpression.innerHTML = "";
+            displayActive.innerHTML = "";
+            clearErrorFlash();
+            displayActive.style.display = "block";
+            displayActive.innerHTML = displayActive.innerHTML + operator;
         
         }else if(equals.className == "pressed"){
             equals.classList.remove("pressed");
-            addition.classList.add ("pressed");
             equals.setAttribute("state","initial");
             displayExpression.innerHTML = "";
             displayActive.innerHTML = displayAnswer.innerHTML;
             displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + " + ";
+            displayActive.innerHTML = displayActive.innerHTML + operator;
             
         }else{
         equals.classList.remove("pressed");
-        addition.classList.add ("pressed");
         decimal.setAttribute("state","");
         equals.setAttribute("state","initial");
         displayExpression.innerHTML = "";
         displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + " + ";
+        displayActive.innerHTML = displayActive.innerHTML + operator;
         }
     }
-    
-    subtraction.onclick = function(){
         
-        if(subtraction.classList == "pressed"){
-            // do nothing //
+    function negativePressed(operator){           
         
+        if(subtraction.className == "pressed"){
+            //Do nothing//
+            
         }else if(equals.className == "pressed"){
             equals.classList.remove("pressed");
-            subtraction.classList.add ("pressed");
+            subtraction.classList.add("pressed");
             equals.setAttribute("state","initial");
             displayExpression.innerHTML = "";
             displayActive.innerHTML = displayAnswer.innerHTML;
             displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + " - ";
+            displayActive.innerHTML = displayActive.innerHTML + operator;
             
         }else{
         equals.classList.remove("pressed");
-        subtraction.classList.add ("pressed");
+        subtraction.classList.add("pressed");    
         decimal.setAttribute("state","");
         equals.setAttribute("state","initial");
         displayExpression.innerHTML = "";
         displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + " - ";
+        displayActive.innerHTML = displayActive.innerHTML + operator;
         }
     }
+        
+        /////Expression Functions/////
+
     
-    multiplication.onclick = function(){
-        
-        if(multiplication.getAttribute("state","initial")){
-            // do nothing //
-        
-        }else if(multiplication.classList == "pressed"){
-            // do nothing //
-        
-        }else if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            multiplication.classList.add ("pressed");
-            equals.setAttribute("state","initial");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = displayAnswer.innerHTML;
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + " * ";
-            
-        }else{
-        equals.classList.remove("pressed");
-        multiplication.classList.add ("pressed");
-        decimal.setAttribute("state","");
-        equals.setAttribute("state","initial");
-        displayExpression.innerHTML = "";
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + " * ";
-        }
+    function errorFlash(){
+        displayAnswer.innerHTML = "Error: Divided by 0";
+        displayAnswer.classList.add("flash"); 
+    }   
+    
+    function clearErrorFlash(){
+        displayAnswer.classList.remove("flash"); 
+        displayAnswer.innerHTML = "";  
     }
-    
-    division.onclick = function(){
-        
-        if(division.getAttribute("state","initial")){
-            // do nothing //
-        
-        }else if(division.classList == "pressed"){
-            // do nothing //
-        
-        }else if(equals.className == "pressed"){
-            equals.classList.remove("pressed");
-            division.classList.add ("pressed");
-            equals.setAttribute("state","initial");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = displayAnswer.innerHTML;
-            displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + " / ";
-            
-        }else{
-        equals.classList.remove("pressed");
-        division.classList.add ("pressed");
-        decimal.setAttribute("state","");
-        equals.setAttribute("state","initial");
-        displayExpression.innerHTML = "";
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + " / ";
-        }
-    }  
-    
+
     
     equals.onclick = function(){
         
@@ -440,24 +204,27 @@ window.onload = function(){
         }
         
         if(displayAnswer.innerHTML == Infinity){
-            displayAnswer.innerHTML = "Error: Divided by 0";
-            displayAnswer.classList.add("flash");  
-        }
-        
-        /* Build an off-click function clear error message 
-        document.addEventListener("click", function(event)){
-        https://codeburst.io/the-off-click-7cbc08bb3df5
-        if(event.target.closest("#equals")){
-            displayAnswer.classList.remove("flash"); 
-            displayAnswer.innerHTML = "";
-            */
+            errorFlash();
+            setTimeout(clearErrorFlash,5000); 
+
         }
     }
     
-
-
+    function clear(){
+        location.reload(); 
+    }
+    
+        /////NumPad Interaction/////
+    
+    /*window.onkeypress = function(event) {
+        if (event.keyCode == 97){
+            digitPressed(1);
+        }   
+    } */
+    
+}
 
 ///// Significant Figures /////
 ///// Add parathesis functionality /////
 ///// Create funtions for "Square" and "Square Root" /////
-/////  Clear and Full Clear buttons /////
+/////NumPad Interaction/////
