@@ -7,18 +7,8 @@ window.onload = function(){
     
            /////Number Variables/////
     
-    var one = document.getElementById("one");
-    var two = document.getElementById("two");
-    var three = document.getElementById("three");
-    var four = document.getElementById("four");
-    var five = document.getElementById("five");
-    var six = document.getElementById("six");
-    var seven = document.getElementById("seven");
-    var eight = document.getElementById("eight");
-    var nine = document.getElementById("nine");
-    var zero = document.getElementById("zero");
-    var doubleZero = document.getElementById("double-zero");
     var decimal = document.getElementById("decimal");
+    var calcDigit = document.getElementsByClassName("digit");
     
             /////Operator Variables/////
     
@@ -27,6 +17,7 @@ window.onload = function(){
     var subtraction = document.getElementById("subtraction");
     var addition = document.getElementById("addition");
     var equals = document.getElementById("equals");
+    var testButton = document.getElementById("test-button");
     
     
             /////Initial State/////
@@ -34,17 +25,19 @@ window.onload = function(){
     multiplication.setAttribute("state","initial");
     division.setAttribute("state","initial");
     equals.setAttribute("state","initial");
+
     
             /////Number functions/////
     
-    one.onclick = function(){
+    
+    function digitPressed(number){
         
         if(equals.className == "pressed"){
             equals.classList.remove("pressed");
             displayExpression.innerHTML = "";
             displayActive.innerHTML = "";
             displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + "1" ;
+            displayActive.innerHTML = displayActive.innerHTML + number ;
             
         }else{
             
@@ -56,10 +49,12 @@ window.onload = function(){
         division.setAttribute("state","");
         equals.setAttribute("state","");
         displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + "1" ;
-            }
-    } 
+        displayActive.innerHTML = displayActive.innerHTML + number ;
+            }  
+    }
+
     
+    /*
     two.onclick = function(){
         
         if(equals.className == "pressed"){
@@ -289,6 +284,8 @@ window.onload = function(){
         displayActive.innerHTML = displayActive.innerHTML + "00" ;
             }
     }  
+    
+    */
     
     decimal.onclick = function(){
         
