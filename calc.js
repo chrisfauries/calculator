@@ -4,26 +4,32 @@ window.onload = function(){
             ///// Key Press Targets /////
     var calculator = document.getElementById("calculator");
     var keys = calculator.querySelector(".keys");
-    keys.addEventListener('click', function(e){
-        if(e.target.attributes.type.value === "numeral"){
-            digitPressed(e.target.innerHTML);              //this needs conditions for nought and point //
-            
-        }else if(e.target.attributes.type.value === "operator"){
-            operatorPressed(e.target.innerHTML);
-            e.target.classList.add ("pressed");
-            
-        }else if(e.target.attributes.type.value === "negative"){
-            negativePressed(e.target.innerHTML);
-            
-        }else if(e.target.attributes.type.value === "reset"){
-            clear();
-        
-        }else if(e.target.attributes.type.value === "squared"){
-            squaredPressed();
-            
-        }else if(e.target.attributes.type.value === "square-root"){
-            squareRootPressed();    
-    }});
+    
+    keys.addEventListener('click', function(e){ 
+        switch(e.target.attributes.type.value){
+            case "numeral":
+                digitPressed(e.target.innerHTML);
+                break;
+            case "operator":
+                operatorPressed(e.target.innerHTML);
+                e.target.classList.add ("pressed");
+                break;
+            case "negative":
+                negativePressed(e.target.innerHTML);
+                break;
+            case "reset":
+                clear();
+                break;
+            case "squared":
+                squaredPressed();
+                break;
+            case "square-root":
+                squareRootPressed(); 
+                break;
+            case "express":
+                equalsPressed(); 
+                break; 
+        }});
      
             ///// Display Variables /////
     var displayActive = document.getElementById("active-display");
@@ -49,10 +55,10 @@ window.onload = function(){
     
             /////Number functions/////
     function digitPressedAttributeResetAfterEquals(){
-            equals.classList.remove("pressed");
-            displayExpression.innerHTML = "";
-            displayActive.innerHTML = "";
-            displayActive.style.display = "block";
+        equals.classList.remove("pressed");
+        displayExpression.innerHTML = "";
+        displayActive.innerHTML = "";
+        displayActive.style.display = "block";
     }
     
     function digitPressedAttributeReset(){
@@ -93,23 +99,23 @@ window.onload = function(){
             displayActive.innerHTML = displayActive.innerHTML + ".";
 
         }else{
-        decimal.setAttribute("state","restrict");
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + ".";
+            decimal.setAttribute("state","restrict");
+            displayActive.style.display = "block";
+            displayActive.innerHTML = displayActive.innerHTML + ".";
         }
     }
     
             /////Square/Square Root Functions/////
     function squaredPressed(){
-            var value = displayAnswer.innerHTML;
-            var answer = eval(value * value);
-            displayAnswer.innerHTML = answer;
+        var value = displayAnswer.innerHTML;
+        var answer = eval(value * value);
+        displayAnswer.innerHTML = answer;
     }
     
     function squareRootPressed(){
-            var value = displayAnswer.innerHTML;
-            var answer = Math.sqrt(value);
-            displayAnswer.innerHTML = answer;
+        var value = displayAnswer.innerHTML;
+        var answer = Math.sqrt(value);
+        displayAnswer.innerHTML = answer;
     }
     
             /////Operator Function/////
@@ -139,12 +145,12 @@ window.onload = function(){
             displayActive.innerHTML = displayActive.innerHTML + operator;
             
         }else{
-        equals.classList.remove("pressed");
-        decimal.setAttribute("state","");
-        equals.setAttribute("state","initial");
-        displayExpression.innerHTML = "";
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + operator;
+            equals.classList.remove("pressed");
+            decimal.setAttribute("state","");
+            equals.setAttribute("state","initial");
+            displayExpression.innerHTML = "";
+            displayActive.style.display = "block";
+            displayActive.innerHTML = displayActive.innerHTML + operator;
         }
     }
             /////Negative Function/////
@@ -163,17 +169,44 @@ window.onload = function(){
             displayActive.innerHTML = displayActive.innerHTML + operator;
             
         }else{
-        equals.classList.remove("pressed");
-        subtraction.classList.add("pressed");    
-        decimal.setAttribute("state","");
-        equals.setAttribute("state","initial");
-        displayExpression.innerHTML = "";
-        displayActive.style.display = "block";
-        displayActive.innerHTML = displayActive.innerHTML + operator;
+            equals.classList.remove("pressed");
+            subtraction.classList.add("pressed");    
+            decimal.setAttribute("state","");
+            equals.setAttribute("state","initial");
+            displayExpression.innerHTML = "";
+            displayActive.style.display = "block";
+            displayActive.innerHTML = displayActive.innerHTML + operator;
         }
     }
         
             /////Expression Function/////
+    function equalsPressed(){
+        if(equals.getAttribute("state","initial")){
+            //do nothing//
+            
+        }else if(equals.classList == "pressed"){
+            //do nothing//
+            
+        }else{
+            equals.classList.add("pressed");
+            multiplication.setAttribute("state","");
+            division.setAttribute("state","");
+            decimal.setAttribute("state","");
+            displayExpression.innerHTML = displayActive.innerHTML;
+            displayActive.style.display = "none";
+
+            var answer = eval(displayExpression.innerHTML);
+
+            displayAnswer.innerHTML = answer;
+        }
+        
+        if(displayAnswer.innerHTML == Infinity){
+            errorFlash();
+            setTimeout(clearErrorFlash,5000); 
+        }
+    }
+
+            /////Error Messagesn/////    
     function errorFlash(){
         displayAnswer.innerHTML = "Error: Divided by 0";
         displayAnswer.classList.add("flash"); 
@@ -184,31 +217,7 @@ window.onload = function(){
         displayAnswer.innerHTML = "";  
     }
 
-    equals.onclick = function(){
-        if(equals.getAttribute("state","initial")){
-            //do nothing//
-            
-        }else if(equals.classList == "pressed"){
-            //do nothing//
-            
-        }else{
-        equals.classList.add("pressed");
-        multiplication.setAttribute("state","");
-        division.setAttribute("state","");
-        decimal.setAttribute("state","");
-        displayExpression.innerHTML = displayActive.innerHTML;
-        displayActive.style.display = "none";
-        
-        var answer = eval(displayExpression.innerHTML);
-        
-        displayAnswer.innerHTML = answer;
-        }
-        
-        if(displayAnswer.innerHTML == Infinity){
-            errorFlash();
-            setTimeout(clearErrorFlash,5000); 
-        }
-    }
+    
         /////Clear Function/////
     function clear(){
         location.reload(); 
