@@ -42,7 +42,6 @@ window.onload = function(){
     var squared = document.getElementById("square");
     var squareRoot = document.getElementById("square-root");
     
-    
             /////Initial States/////
     multiplication.setAttribute("state","initial");
     division.setAttribute("state","initial");
@@ -78,6 +77,7 @@ window.onload = function(){
             displayActive.innerHTML = displayActive.innerHTML + number;
             }  
     }
+    
              /////decimal function/////
     decimal.onclick = function(){
         
@@ -173,7 +173,7 @@ window.onload = function(){
         }
     }
         
-        /////Expression Function/////
+            /////Expression Function/////
     function errorFlash(){
         displayAnswer.innerHTML = "Error: Divided by 0";
         displayAnswer.classList.add("flash"); 
@@ -214,6 +214,8 @@ window.onload = function(){
         location.reload(); 
     }
     
+    
+    
         /////NumPad Interactions/////
     /*window.onkeypress = function(event) {
         if (event.keyCode == 97){
@@ -223,6 +225,7 @@ window.onload = function(){
     
 }
 
+///// Switch Between Operators /////
 ///// Significant Figures /////
 ///// Add parathesis functionality /////
-/////NumPad Interaction/////
+///// NumPad Interaction /////
