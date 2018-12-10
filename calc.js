@@ -5,7 +5,7 @@ window.onload = function(){
     var calculator = document.getElementById("calculator");
     var keys = calculator.querySelector(".keys");
     
-    keys.addEventListener('click', function(e){ 
+    keys.addEventListener('click', function(e){
         switch(e.target.attributes.type.value){
             case "numeral":
                 digitPressed(e.target.innerHTML);
@@ -24,13 +24,16 @@ window.onload = function(){
                 squaredPressed();
                 break;
             case "square-root":
-                squareRootPressed(); 
+                squareRootPressed();
+                break;
+            case "point":
+                decimalPressed(e.target.innerHTML);
                 break;
             case "express":
-                equalsPressed(); 
-                break; 
+                equalsPressed();
+                break;
         }});
-     
+ 
             ///// Display Variables /////
     var displayActive = document.getElementById("active-display");
     var displayExpression = document.getElementById("expression-display");
@@ -45,7 +48,7 @@ window.onload = function(){
     var equals = document.getElementById("equals");
     
             /////Square Variables/////
-    var squared = document.getElementById("square");
+    var squared = document.getElementById("squared");
     var squareRoot = document.getElementById("square-root");
     
             /////Initial States/////
@@ -73,7 +76,6 @@ window.onload = function(){
     }
     
     function digitPressed(number){
-        
         if(equals.className == "pressed"){
             digitPressedAttributeResetAfterEquals();
             displayActive.innerHTML = displayActive.innerHTML + number;
@@ -85,8 +87,7 @@ window.onload = function(){
     }
     
              /////decimal function/////
-    decimal.onclick = function(){
-        
+    function decimalPressed(decimalpoint){
         if(decimal.getAttribute("state","restrict")){
             //do nothing//
             
@@ -96,29 +97,32 @@ window.onload = function(){
             displayExpression.innerHTML = "";
             displayActive.innerHTML = "";
             displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + ".";
+            displayActive.innerHTML = displayActive.innerHTML + decimalpoint;
 
         }else{
             decimal.setAttribute("state","restrict");
             displayActive.style.display = "block";
-            displayActive.innerHTML = displayActive.innerHTML + ".";
+            displayActive.innerHTML = displayActive.innerHTML + decimalpoint;
         }
     }
     
             /////Square/Square Root Functions/////
     function squaredPressed(){
-        var value = displayAnswer.innerHTML;
-        var answer = eval(value * value);
-        displayAnswer.innerHTML = answer;
+        if(equals.className == "pressed"){
+            var value = displayAnswer.innerHTML;
+            var answer = eval(value * value);
+            displayAnswer.innerHTML = answer;
+        }else{
+            //do nothing//
+        }
     }
-    
     function squareRootPressed(){
         var value = displayAnswer.innerHTML;
         var answer = Math.sqrt(value);
         displayAnswer.innerHTML = answer;
     }
     
-            /////Operator Function/////
+            /////Operator Functions/////
     function operatorPressed(operator){
         
         if(multiplication.getAttribute("state","initial") || division.getAttribute("state","initial")){
@@ -222,11 +226,9 @@ window.onload = function(){
     function clear(){
         location.reload(); 
     }
-    
-    
-    
-        /////NumPad Interactions/////
-    /*window.onkeypress = function(event) {
+        /////NumPad Interactions////
+    /*
+    window.onkeypress = function(event) {
         if (event.keyCode == 97){
             digitPressed(1);
         }   
