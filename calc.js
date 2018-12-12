@@ -72,13 +72,14 @@ window.onload = function(){
         multiplication.setAttribute("state","");
         division.setAttribute("state","");
         equals.setAttribute("state","");
-        displayActive.style.display = "block"; 
+        displayActive.style.display = "block";
     }
     
     function digitPressed(number){
         if(equals.className == "pressed"){
             digitPressedAttributeResetAfterEquals();
             displayActive.innerHTML = displayActive.innerHTML + number;
+            console.log(this);
             
         }else{
             digitPressedAttributeReset();
@@ -116,6 +117,7 @@ window.onload = function(){
             //do nothing//
         }
     }
+    
     function squareRootPressed(){
         var value = displayAnswer.innerHTML;
         var answer = Math.sqrt(value);
@@ -232,8 +234,7 @@ window.onload = function(){
         if (event.keyCode == 97){
             digitPressed(1);
         }   
-    } */
-    
+    } */ 
 }
 
 ///// Switch Between Operators /////
