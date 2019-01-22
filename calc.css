@@ -45,6 +45,7 @@ li {
 li:hover{
     font-weight: 600;
     background: #7D60A3;
+    cursor: pointer;
 }
 
 
@@ -93,4 +94,12 @@ li:hover{
 @keyframes flash {
     from {color: red;}
     to {color: black;}
+}
+
+#clear{
+    background: #888;
+}
+
+#clear:hover{
+    background: #aaa;
 }
