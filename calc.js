@@ -228,16 +228,75 @@ window.onload = function(){
     function clear(){
         location.reload(); 
     }
-        /////NumPad Interactions////
-    /*
-    window.onkeypress = function(event) {
-        if (event.keyCode == 97){
-            digitPressed(1);
-        }   
-    } */ 
+
+	     ///// NumPad Interaction /////
+	window.addEventListener('keypress', function(e) {
+		switch(e.key) {
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+			case "5":
+			case "6":
+			case "7":
+			case "8":
+			case "9":
+			case "0":
+				digitPressed(e.key);
+				break;
+			case "+":
+				operatorPressed(e.key);
+				addition.classList.add ("pressed");
+				break;
+			case "*":
+				operatorPressed(e.key);
+				multiplication.classList.add ("pressed");
+				break;
+			case "/":
+				operatorPressed(e.key);
+				division.classList.add ("pressed");
+				break;
+			case "-":
+				negativePressed(e.key);
+				break;
+			case "reset":
+				clear();
+				break;
+			case "squared":
+				squaredPressed();
+				break;
+			case "square-root":
+				squareRootPressed();
+				break;
+			case ".":
+				decimalPressed(e.key);
+				break;
+			case "=":
+			case "Enter":
+				equalsPressed();
+				break;
+		}
+	});
+	
+	window.addEventListener('keydown', function(e) {
+	console.log(e.key)
+		switch(e.key) {
+			case 'Delete':
+			case 'Backspace':
+			case 'Escape':
+				clear();
+				break;
+			default:
+				break;
+		}
+	});
+
+	
 }
+
+
+
 
 ///// Switch Between Operators /////
 ///// Significant Figures /////
 ///// Add parathesis functionality /////
-///// NumPad Interaction /////
