@@ -6,7 +6,6 @@ window.onload = function(){
     var keys = calculator.querySelector(".keys");
     
     keys.addEventListener('click', function(e){
-				console.log(e.target)
         switch(e.target.attributes.type.value){
             case "numeral":
                 digitPressed(e.target.innerHTML);
